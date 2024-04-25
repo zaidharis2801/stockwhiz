@@ -1,0 +1,159 @@
+{% extends "base.html" %} {% block title %}Transactions{% endblock %}{% block
+content %}
+
+
+
+ <form method="POST" style="margin-top:90px">
+
+<div class="input-group" style="width:50%; margin:auto">
+  <input name ='search', id="search", type="search" class="form-control rounded" placeholder="Search..." aria-label="Search" aria-describedby="search-addon" />
+  <button type="search" class="btn"><i class="fas fa-search" style="color:white"></i></button>
+</div>
+  </form>
+
+
+<div style="margin-top:90px">
+    <div class="row">
+    <div class="col" style="margin-right:50px;
+height: 450px; background: rgba(26, 255, 255, 0.25);
+border-radius: 15px; ">
+
+<h2 style="text-align:center; margin-top:25px">
+
+    {{ name }} Stock Price
+
+</h2>
+        <div class="row" style="margin-top: 50px"><div class="col">
+            <h5>Stock Price: </h5>
+            <h5 style="margin-top: 25px">
+                Open Price:
+            </h5>
+            <h5 style="margin-top: 25px">
+                Close Price:
+            </h5>
+            <h5 style="margin-top: 25px">
+                High Price:
+            </h5>
+            <h5 style="margin-top: 25px">
+                Low Price:
+            </h5>
+            <h5 style="margin-top: 25px">
+                Total Volume:
+            </h5>
+        </div>
+            <div class="col">
+        {% if prn > lprice %}
+
+        <h5 style="color:#1ecb4f">
+            {{ prn }}
+          </h5>
+        {% elif prn == lprice %}
+
+        <h5 style="color:#1ecb4f;">
+
+          {{ prn }}
+          </h5>
+        {% else %}
+
+          <h5 style="color: #f46d22;">
+
+          {{ prn }}
+          </h5>
+        {% endif %}
+
+                <h5 style="margin-top: 25px"> {{ oprice }}</h5>
+                <h5 style="margin-top: 25px">{{ lprice }}</h5>
+                <h5 style="margin-top: 25px; color:#1ecb4f">{{ hprice }}</h5>
+                <h5 style="margin-top: 25px; color: #f46d22;">{{ lowprice }}</h5>
+                <h5 style="margin-top: 25px">{{ tvol }}</h5>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="col" style="width: 534px;
+height: 450px; background: rgba(26, 255, 255, 0.25);
+border-radius: 15px; padding:10px">
+        <h2 style="margin-top: 25px; text-align:center" > {{ name }} Stock Graph</h2>
+
+        <div id="plotly-stock-candle"></div>
+
+            <script>
+                //Parse your Json variable here
+                var graphs = {{ plotly_plot | safe }};
+                Plotly.plot('plotly-stock-candle', graphs, {});
+            </script>
+
+    </div>
+
+
+
+</div>
+</div>
+
+
+
+
+<div class="col-md-6 offset-md-3">
+                    <span class="anchor" id="formPayment"></span>
+                    <hr class="my-5">
+
+                    <!-- form card cc payment -->
+                    <div class="card card-outline-secondary">
+                        <div class="card-body">
+                            <h3 class="text-center">Account Payment Topup</h3>
+                            <hr>
+<!--                            <div class="alert alert-info p-2 pb-3">-->
+<!--                                <a class="close font-weight-normal initialism" data-dismiss="alert" href="#"><samp>×</samp></a>-->
+<!--                                CVC code is required.-->
+<!--                            </div>-->
+                            <form method = "POST">
+                                <div class="form-group">
+                                    <label for="buy_name">Transaction Type</label>
+                                        <div class="d-grid gap-2 d-md-block btn-group" data-toggle="buttons" align="center" id="buy_name" name = "buy_name">
+                                              <label class="btn btn-success active" style="padding:0.5rem 3rem !important;">
+                                                <input type="radio" name="options" id="option1" autocomplete="off" value="buy" checked> Buy
+                                              </label>
+                                              <label class="btn btn-danger" style="padding:0.5rem 3rem !important;">
+                                                <input type="radio" name="options" id="option2" autocomplete="off" value="sell"> Sell
+                                              </label>
+
+                                            </div>
+
+<!--                                         <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" style="padding:0.5rem 3rem !important;" checked>-->
+<!--                                        <label class="btn btn-outline-success" for="btnradio1">Buy</label>-->
+
+<!--                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" style="padding:0.5rem 3rem !important;">-->
+<!--                                        <label class="btn btn-outline-danger" for="btnradio2">Sell</label>-->
+
+<!--                                    <div class="d-grid gap-2 d-md-block" align="center" id="buy_name" name = "buy_name">-->
+<!--                                        <button class="btn btn-success"  type="button" style="padding:0.5rem 3rem !important;" value="buy">Buy</button>-->
+<!--                                         <button class="btn btn-danger" type="button" style="padding:0.5rem 3rem !important;" value="sell">Sell</button>-->
+<!--                                    </div>-->
+                                </div>
+                                <div class="form-group">
+                                    <label for="symbol_name">Symbol</label>
+                                    <input type="text" class="form-control" id="symbol_name" title="Symbol Name" required="required" name = "symbolname" value="{{ search }}" placeholder="Search a stock to add here" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label>Volume</label>
+                                    <input type="text" class="form-control text-right" id="exampleSymbol" placeholder="00" required="required" name = "stockvolumes">
+                                </div>
+                                <div class="form-inline">
+                                        <div class="input-group-prepend" style="width:"><span class="input-group-text">$</span></div>
+                                        <input type="text" class="form-control text-right" id="exampleInputAmount" placeholder="00" required="required" name = "paymentamount" style="width:94.9%">
+                                        </div>
+
+                                 <div class="form-group row" style="justify-content:center" >
+
+                                    <div class="col-md-6">
+                                        <br>
+                                        <button  type="submit" class="btn btn-success btn-lg btn-block">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,123 @@
+{% extends "base.html" %} {% block title %}Sign Up{% endblock %} {% block
+content %}
+
+<!-- Section: Design Block -->
+<section class="text-center text-lg-start">
+  <style>
+    .cascading-right {
+      margin-right: -50px;
+    }
+
+    @media (max-width: 991.98px) {
+      .cascading-right {
+        margin-right: 0;
+      }
+    }
+    .mask-custom {
+  backdrop-filter: blur(5px);
+  background-color: rgba(178, 60, 253, 0.2);
+}
+  </style>
+
+  <!-- Jumbotron -->
+  <div class="container py-4">
+    <div class="row g-0 align-items-center">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="card cascading-right" style="
+            background: hsla(0, 0%, 100%, 0.55);
+            backdrop-filter: blur(30px);
+            ">
+          <div class="card-body p-5 shadow-5 text-center">
+            <h2 class="fw-bold mb-5">Sign up now</h2>
+            <form method = "POST" enctype="multipart/form-data">
+              <!-- 2 column grid layout with text inputs for the first and last names -->
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="text" id="form3Example1" class="form-control" placeholder ="First Name" name="firstname"/>
+                    <label class="form-label"  for="form3Example1">First name</label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="text" id="form3Example2" class="form-control" placeholder ="Last Name" name="lastname"/>
+                    <label class="form-label"  for="form3Example2">Last name</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-outline mb-4">
+                <label for="profile_pic">Select a file:</label>
+                <input type="file" id="profile_pic" name="profile_pic">
+              </div>
+
+              <!-- Email input -->
+              <div class="form-outline mb-4">
+                <input type="email" id="form3Example3" class="form-control" placeholder ="Email Address" name="email"/>
+                <label class="form-label"  for="form3Example3">Email address</label>
+              </div>
+
+              <!-- Password input -->
+              <div class="form-outline mb-4">
+                <input type="password" id="form3Example4" class="form-control" placeholder ="Password" name="password" />
+                <label class="form-label"  for="form3Example4">Password</label>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="password" id="form3Example42" class="form-control" placeholder ="Re-Enter Password" name="password2"/>
+                <label class="form-label"  for="form3Example42">Password (confirm)</label>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="text" id="form3Example5" class="form-control" placeholder ="Current Address" name="address"/>
+                <label class="form-label"  for="form3Example5">Current Address</label>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="text" id="form3Example6" class="form-control" placeholder ="Account Number" name="account"/>
+                <label class="form-label"  for="form3Example6">Account Number</label>
+              </div>
+
+
+
+
+              <!-- Submit button -->
+              <button type="submit" class="btn btn-success  btn-block mb-4">
+                Sign up
+              </button>
+
+              <!-- Register buttons -->
+<!--              <div class="text-center">-->
+<!--                <p>or sign up with:</p>-->
+<!--                <button type="button" class="btn btn-link btn-floating mx-1">-->
+<!--                  <i class="fab fa-facebook-f"></i>-->
+<!--                </button>-->
+
+<!--                <button type="button" class="btn btn-link btn-floating mx-1">-->
+<!--                  <i class="fab fa-google"></i>-->
+<!--                </button>-->
+
+<!--                <button type="button" class="btn btn-link btn-floating mx-1">-->
+<!--                  <i class="fab fa-twitter"></i>-->
+<!--                </button>-->
+
+<!--                <button type="button" class="btn btn-link btn-floating mx-1">-->
+<!--                  <i class="fab fa-github"></i>-->
+<!--                </button>-->
+<!--              </div>-->
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <img src="{{url_for('static', filename='signup.jpg')}}" class="w-100 rounded-4 shadow-4"
+          alt=""
+          height="870px" style="margin-left:90px"/>
+      </div>
+    </div>
+  </div>
+  <!-- Jumbotron -->
+</section>
+<!-- Section: Design Block -->
+
+{% endblock %}
